@@ -2,6 +2,7 @@ const express = require('express');
 const rotaLivro = require('./routes/livro.js')
 
 const app = express();
+app.use(express.json())
 
 app.use('/livros', rotaLivro)
 
