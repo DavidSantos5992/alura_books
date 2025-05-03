@@ -60,6 +60,10 @@ function Pesquisa() {
         console.log('livrosAPI', livrosAPI)
     }
 
+    useEffect(() => {
+        console.log('livrosPesquisados', livrosPesquisados)
+    }, [livrosPesquisados])
+
     return (
         <PesquisaContainer>
             <Titulo>Já sabe por onde começar?</Titulo>
@@ -67,14 +71,16 @@ function Pesquisa() {
             <Input
                 placeholder="Escreva sua próxima leitura"
                 onBlur={evento => {
-                    const textoDigitado = evento.target.value
-                    const resultadoPesquisa = livros.filter(livro => livro.nome.includes(textoDigitado))
+                    const textoDigitado = evento.target.value.toLowerCase()
+                    const resultadoPesquisa = livros.filter(livro =>
+                        livro.nome.toLowerCase().includes(textoDigitado)
+                    )
                     setLivrosPesquisados(resultadoPesquisa)
                 }}
             />
-            {livrosPesquisados.map(livro => (
-                <Resultado>
-                    <img src={livro.src} />
+            {livrosPesquisados.map((livro, index) => (
+                <Resultado key={index}>
+                    <img src={livro.src} alt={livro.nome} />
                     <p>{livro.nome}</p>
                 </Resultado>
             ))}

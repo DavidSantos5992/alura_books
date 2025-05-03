@@ -1,7 +1,7 @@
 import { livros } from './dadosUltimosLancamentos'
 import { Titulo } from '../Titulo'
 import CardRecomenda from '../CardRecomenda'
-import imagemLivro from '../../imagens/livro2.png' 
+import imagemLivro from '../../imagens/livro2.png'
 import styled from 'styled-components'
 
 const UltimosLancamentosContainer = styled.section`
@@ -29,9 +29,11 @@ function UltimosLancamentos() {
                 ÚLTIMOS LANÇAMENTOS
             </Titulo>
             <NovosLivrosContainer>
-                {livros.map( livro => (
-                    <img src={livro.src}/>
+                {livros.map((livro, index) => (
+                    <img key={index} src={livro.src} alt="" />
                 ))}
+
+
             </NovosLivrosContainer>
             <CardRecomenda
                 titulo="Talvez você se interesse por"
